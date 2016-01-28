@@ -6,6 +6,10 @@
             android:icon="@drawable/ic_dashboard_black_24dp"
             android:title="Dashboard" />
         <item
+            android:id="@+id/nav_assigned"
+            android:icon="@drawable/ic_assigned_black_24dp"
+            android:title="Assigned" />
+        <item
             android:id="@+id/nav_pipeline"
             android:icon="@drawable/ic_pipeline_black_24dp"
             android:title="Pipeline" />
@@ -13,6 +17,12 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_triage_black_24dp"
             android:title="Triage" />
+
+        <item
+            android:id="@+id/nav_item_creator"
+            android:icon="@drawable/ic_item_creator_black_24dp"
+            android:title="Item Creator" />
+
     </group>
 
     <!--<item android:title="Communicate">-->
