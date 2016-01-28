@@ -79,6 +79,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId) {
             R.id.nav_camera -> {
                 startActivity(Intent(this, LoginActivity::class.java))
+                return true
+            }
+
+            R.id.nav_triage -> {
+                val ft = supportFragmentManager.beginTransaction()
+                ft.replace(R.id.main, TriageFragment())
+                ft.addToBackStack("Triage")
+                ft.commit()
+                return true
+            }
+
+            R.id.nav_item_creator -> {
+                val ft = supportFragmentManager.beginTransaction()
+                ft.replace(R.id.main, ItemCreatorFragment())
+                ft.addToBackStack("Item Creator")
+                ft.commit()
+                return true
             }
         }
 

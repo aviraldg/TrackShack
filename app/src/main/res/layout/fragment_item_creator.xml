@@ -34,36 +34,49 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:hint="Username"
-                    android:id="@+id/milestone_username"
+                <EditText
+                    android:id="@+id/item_name"
                     android:layout_weight="1"
                     android:layout_width="0dp"
+                    android:hint="Name"
                     android:layout_height="match_parent" />
                 <Button
                     android:text="Add"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/milestone_user_add" />
+                    android:id="@+id/item_create" />
             </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:layout_weight="1"
-                android:id="@+id/recycler_view"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/item_cemail"
+                    android:layout_width="match_parent"
+                    android:hint="Customer Email"
+                    android:layout_height="40dp" />
 
-            </android.support.v7.widget.RecyclerView>
+                <EditText
+                    android:id="@+id/item_cphone"
+                    android:layout_width="match_parent"
+                    android:hint="Customer Phone"
+                    android:layout_height="wrap_content" />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:hint="Description"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/item_description" />
+            </LinearLayout>
+
+
+
         </LinearLayout>
     </LinearLayout>
-
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

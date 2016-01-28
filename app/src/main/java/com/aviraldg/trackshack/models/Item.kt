@@ -7,5 +7,7 @@ import com.parse.ParseGeoPoint
 @ParseClassName("Item")
 class Item : BaseModel() {
     var name by ParseValue<String>()
-    var location by ParseValue(ParseGeoPoint(0.0, 0.0))
+    var desc by ParseValue<String>()
+    var cemail by ParseValue<String>()
+    var cphone by ParseValue<String>()
 }
