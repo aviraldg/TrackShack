@@ -6,5 +6,5 @@ import com.parse.ParseClassName
 @ParseClassName("Milestone")
 class Milestone : BaseModel() {
     var name by ParseValue<String>()
-    var order by ParseValue<Int>()
+    var order by ParseValue<Int?>()
 }

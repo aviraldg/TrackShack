@@ -17,7 +17,7 @@ class MilestoneAdapter(val activity: MainActivity) : RecyclerView.Adapter<Milest
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun setMilestone(milestone: Milestone) {
             itemView.milestone_name.text = milestone.name
-            itemView.milestone_index.text = milestone.order.toString()
+            itemView.milestone_index.text = (milestone.order ?: "?").toString()
             itemView.setOnClickListener {
                 with(activity) {
                     val ft = supportFragmentManager.beginTransaction()

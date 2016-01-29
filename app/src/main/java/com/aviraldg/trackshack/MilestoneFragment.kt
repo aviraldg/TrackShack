@@ -121,7 +121,7 @@ class MilestoneFragment : Fragment() {
 
                     Log.i(TAG, "${m.name}")
 
-                    activity.runOnUiThread {
+                    activity?.runOnUiThread {
                         recycler_adapter = MilestoneUsersAdapter(milestone)
                         recycler_view.adapter = recycler_adapter
                     }
