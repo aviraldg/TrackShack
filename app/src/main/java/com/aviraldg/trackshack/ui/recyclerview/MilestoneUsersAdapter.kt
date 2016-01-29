@@ -1,5 +1,6 @@
 package com.aviraldg.trackshack.ui.recyclerview
 
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.aviraldg.trackshack.R
 import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.models.User
+import com.aviraldg.trackshack.util.md5
 import com.parse.ParseQuery
 import com.parse.ParseUser
 import kotlinx.android.synthetic.user_item.view.*
@@ -17,6 +19,7 @@ class MilestoneUsersAdapter(val milestone: Milestone) : RecyclerView.Adapter<Mil
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setUser(user: ParseUser) {
             itemView.user_username.text = "${user.username} (${user.email})"
+            itemView.user_image.setImageURI(Uri.parse("http://www.gravatar.com/avatar/${md5(user.email ?: user.username)}?d=retro"))
         }
     }
 

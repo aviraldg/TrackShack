@@ -5,6 +5,7 @@ import com.aviraldg.trackshack.models.Item
 import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.models.Pipeline
 import com.aviraldg.trackshack.models.User
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.parse.Parse
 import com.parse.ParseInstallation
 import com.parse.ParseObject
@@ -20,6 +21,8 @@ class TSApplication : Application() {
             .map {
                 ParseObject.registerSubclass(it)
             }
+
+        Fresco.initialize(this)
 
         Parse.enableLocalDatastore(this)
         Parse.initialize(this)
