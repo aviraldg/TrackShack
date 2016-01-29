@@ -82,6 +82,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 return true
             }
 
+            R.id.nav_assigned -> {
+                val ft = supportFragmentManager.beginTransaction()
+                ft.replace(R.id.main, AssignedFragment())
+                ft.addToBackStack("Assigned")
+                ft.commit()
+                return true
+            }
+
             R.id.nav_triage -> {
                 val ft = supportFragmentManager.beginTransaction()
                 ft.replace(R.id.main, TriageFragment())

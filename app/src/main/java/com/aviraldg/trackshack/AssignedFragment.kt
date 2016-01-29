@@ -13,13 +13,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.aviraldg.trackshack.ui.recyclerview.AssignedItemsAdapter
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneAdapter
 import kotlinx.android.synthetic.main.fragment_pipeline.*
 import kotlin.properties.Delegates
 
 class AssignedFragment : Fragment() {
     val TAG = "PipelineFragment"
-    var adapter by Delegates.notNull<MilestoneAdapter>()
+    var adapter by Delegates.notNull<AssignedItemsAdapter>()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_pipeline, container, false)
@@ -30,7 +31,7 @@ class AssignedFragment : Fragment() {
 
         (activity as MainActivity).setToolbar(toolbar)
 
-        adapter = MilestoneAdapter(activity as MainActivity)
+        adapter = AssignedItemsAdapter()
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
     }
