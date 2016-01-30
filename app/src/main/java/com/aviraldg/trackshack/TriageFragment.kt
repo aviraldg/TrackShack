@@ -14,6 +14,7 @@ import com.parse.GetCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
 import com.parse.ParseUser
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_triage.*
 import kotlin.properties.Delegates
 
@@ -28,10 +29,11 @@ class TriageFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).setToolbar(toolbar)
         triage_scan.setOnClickListener {
             IntentIntegrator.forSupportFragment(this).initiateScan()
         }
+
+        activity.toolbar.title = "Triage"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

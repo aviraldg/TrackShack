@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.aviraldg.trackshack.ui.recyclerview.AssignedItemsAdapter
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_pipeline.*
 import kotlin.properties.Delegates
 
@@ -29,11 +30,13 @@ class AssignedFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).setToolbar(toolbar)
+//        (activity as MainActivity).setToolbar(toolbar)
 
         adapter = AssignedItemsAdapter()
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
+
+        activity.toolbar.title = "Assigned Items"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_dashboard_black_24dp"
-            android:title="Dashboard" />
-        <item
-            android:id="@+id/nav_assigned"
-            android:icon="@drawable/ic_assigned_black_24dp"
-            android:title="Assigned" />
-        <item
-            android:id="@+id/nav_pipeline"
-            android:icon="@drawable/ic_pipeline_black_24dp"
-            android:title="Pipeline" />
-        <item
-            android:id="@+id/nav_triage"
-            android:icon="@drawable/ic_triage_black_24dp"
-            android:title="Triage" />
+        <item android:title="Management">
+            <menu>
+                <item
+                    android:id="@+id/nav_dashboard"
+                    android:icon="@drawable/ic_dashboard_black_24dp"
+                    android:title="Dashboard" />
 
-        <item
-            android:id="@+id/nav_item_creator"
-            android:icon="@drawable/ic_item_creator_black_24dp"
-            android:title="Item Creator" />
+                <item
+                    android:id="@+id/nav_pipeline"
+                    android:icon="@drawable/ic_pipeline_black_24dp"
+                    android:title="Pipeline" />
+            </menu>
+        </item>
+        <item android:title="Operations">
+            <menu>
+                <item
+                    android:id="@+id/nav_assigned"
+                    android:icon="@drawable/ic_assigned_black_24dp"
+                    android:title="Assigned" />
+                <item
+                    android:id="@+id/nav_triage"
+                    android:icon="@drawable/ic_triage_black_24dp"
+                    android:title="Triage" />
 
+                <item
+                    android:id="@+id/nav_item_creator"
+                    android:icon="@drawable/ic_item_creator_black_24dp"
+                    android:title="Item Creator" />
+            </menu>
+        </item>
     </group>
 
     <!--<item android:title="Communicate">-->

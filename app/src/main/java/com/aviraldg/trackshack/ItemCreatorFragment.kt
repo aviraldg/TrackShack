@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.aviraldg.trackshack.models.Item
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_item_creator.*
 import net.glxn.qrgen.android.QRCode
 import kotlin.properties.Delegates
@@ -23,7 +24,7 @@ class ItemCreatorFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).setToolbar(toolbar)
+//        (activity as MainActivity).setToolbar(toolbar)
 
         item_create.setOnClickListener {
             val i = Item()
@@ -38,6 +39,8 @@ class ItemCreatorFragment : Fragment() {
                 ph.printBitmap("TrackShack: ${i.name}}", bitmap)
             }
         }
+
+        activity.toolbar.title = "Item Creator"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

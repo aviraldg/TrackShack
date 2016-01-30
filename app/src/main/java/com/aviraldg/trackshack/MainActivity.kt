@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -28,17 +27,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun setToolbar(toolbar: Toolbar) {
-        toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.setDrawerListener(toggle)
-        toggle.syncState()
         setSupportActionBar(toolbar)
         supportActionBar.setDisplayHomeAsUpEnabled(true)
+        toggle = ActionBarDrawerToggle(
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        toggle.setToolbarNavigationClickListener {
+            if(drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                drawer_layout.closeDrawer(GravityCompat.START)
+            } else {
+                drawer_layout.openDrawer(nav_view)
+            }
+        }
+        drawer_layout.setDrawerListener(toggle)
+        toggle.syncState()
     }
 
     fun initUi() {
-        val navigationView = findViewById(R.id.nav_view) as NavigationView
-        navigationView.setNavigationItemSelectedListener(this)
+        nav_view.setNavigationItemSelectedListener(this)
+
+        setToolbar(toolbar)
 
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.main, PipelineFragment())
@@ -77,17 +84,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when(item.itemId) {
-            R.id.nav_camera -> {
+            R.id.nav_dashboard -> {
                 startActivity(Intent(this, LoginActivity::class.java))
-                return true
             }
+
+            R.id.nav_pipeline -> {
+                val ft = supportFragmentManager.beginTransaction()
+                ft.replace(R.id.main, PipelineFragment())
+                ft.addToBackStack("Pipeline")
+                ft.commit()
+            }
+
 
             R.id.nav_assigned -> {
                 val ft = supportFragmentManager.beginTransaction()
                 ft.replace(R.id.main, AssignedFragment())
                 ft.addToBackStack("Assigned")
                 ft.commit()
-                return true
             }
 
             R.id.nav_triage -> {
@@ -95,7 +108,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 ft.replace(R.id.main, TriageFragment())
                 ft.addToBackStack("Triage")
                 ft.commit()
-                return true
             }
 
             R.id.nav_item_creator -> {
@@ -103,9 +115,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 ft.replace(R.id.main, ItemCreatorFragment())
                 ft.addToBackStack("Item Creator")
                 ft.commit()
-                return true
             }
         }
+
+        nav_view.setCheckedItem(item.itemId)
 
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         drawer.closeDrawer(GravityCompat.START)

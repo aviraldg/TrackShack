@@ -9,4 +9,6 @@
     <size
         android:width="48dp"
         android:height="48dp"/>
+
+    <!--<stroke android:color="@color/colorAccentDark" android:width="4dp"/>-->
 </shape>

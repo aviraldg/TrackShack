@@ -12,22 +12,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Filter
 import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.models.User
+import com.aviraldg.trackshack.models.image
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneAdapter
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneUsersAdapter
 import com.parse.GetCallback
 import com.parse.ParseException
 import com.parse.ParseQuery
 import com.parse.ParseUser
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_milestone.*
+import kotlinx.android.synthetic.main.user_item.*
+import kotlinx.android.synthetic.user_item.view.*
 import kotlin.properties.Delegates
 
 class MilestoneFragment : Fragment() {
     val TAG = "MilestoneFragment"
 
     var recycler_adapter by Delegates.notNull<MilestoneUsersAdapter>()
-    var adapter by Delegates.notNull<ArrayAdapter<String>>()
+    var adapter by Delegates.notNull<ArrayAdapter<User>>()
     var milestone: Milestone by Delegates.notNull()
 
     companion object {
@@ -46,8 +51,6 @@ class MilestoneFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        (activity as MainActivity).setToolbar(toolbar)
 
         recycler_view.layoutManager = LinearLayoutManager(context)
         ItemTouchHelper(object: ItemTouchHelper.Callback() {
@@ -70,7 +73,27 @@ class MilestoneFragment : Fragment() {
                 return true
             }
         }).attachToRecyclerView(recycler_view)
-        adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1)
+        adapter = object: ArrayAdapter<User>(context, R.layout.user_item) {
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+                val user = getItem(position)
+                val v = convertView ?: getLayoutInflater(null)
+                        .inflate(R.layout.user_item, parent, false)
+
+                with(user.user) {
+                    v.user_username.text = username
+                    v.user_image.setImageURI(image)
+                }
+                return v
+            }
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+                return getDropDownView(position, convertView, parent)
+            }
+
+            override fun getFilter(): Filter? {
+                return null
+            }
+        }
         milestone_username.setAdapter(adapter)
         milestone_username.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -87,8 +110,9 @@ class MilestoneFragment : Fragment() {
                         Log.i(TAG, "$mutableList")
                         adapter.clear()
                         adapter.addAll(mutableList.map {
-                            it.username
+                            User(it)
                         })
+                        adapter.notifyDataSetChanged()
                     }
             }
 
@@ -109,6 +133,8 @@ class MilestoneFragment : Fragment() {
                 }
             }
         }
+
+        activity.toolbar.title = "Milestone"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

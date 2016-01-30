@@ -43,7 +43,9 @@ class MilestoneAdapter(val activity: MainActivity) : RecyclerView.Adapter<Milest
         q.findInBackground { mutableList, parseException ->
             items.clear()
             parseException ?: items.addAll(mutableList)
-            notifyDataSetChanged()
+            (0..mutableList.size).forEach {
+                notifyItemInserted(it)
+            }
         }
     }
 

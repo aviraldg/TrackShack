@@ -16,7 +16,6 @@ class TSApplication : Application() {
 
         arrayOf(Milestone::class.java,
                 Pipeline::class.java,
-                User::class.java,
                 Item::class.java)
             .map {
                 ParseObject.registerSubclass(it)

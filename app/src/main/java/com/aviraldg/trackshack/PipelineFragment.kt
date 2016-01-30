@@ -16,6 +16,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneAdapter
+import jp.wasabeef.recyclerview.animators.FadeInAnimator
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_pipeline.*
 import kotlin.properties.Delegates
 
@@ -30,11 +32,14 @@ class PipelineFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).setToolbar(toolbar)
-
         adapter = MilestoneAdapter(activity as MainActivity)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
+        recycler_view.itemAnimator = with(FadeInAnimator()) {
+            addDuration = 1000
+            allowEnterTransitionOverlap = false
+            this
+        }
         ItemTouchHelper(object: ItemTouchHelper.Callback() {
             override fun getMovementFlags(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?): Int {
                 return makeMovementFlags(ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -81,6 +86,8 @@ class PipelineFragment : Fragment() {
                 .setTitle("Create Milestone")
             dialog.show()
         }
+
+        activity.toolbar.title = "Pipeline"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
