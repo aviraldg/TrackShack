@@ -91,7 +91,15 @@ class MilestoneFragment : Fragment() {
             }
 
             override fun getFilter(): Filter? {
-                return null
+                return object: Filter() {
+                    override fun performFiltering(constraint: CharSequence?): FilterResults? {
+                        return FilterResults()
+                    }
+
+                    override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                    }
+
+                }
             }
         }
         milestone_username.setAdapter(adapter)
@@ -120,6 +128,7 @@ class MilestoneFragment : Fragment() {
 
         milestone_user_add.setOnClickListener {
             val q = ParseUser.getQuery()
+            Log.i(TAG, milestone_username.text.toString())
             q.whereEqualTo("username", milestone_username.text.toString())
             q.findInBackground { mutableList, parseException ->
                 if(mutableList.isEmpty()) {
@@ -148,6 +157,7 @@ class MilestoneFragment : Fragment() {
                     Log.i(TAG, "${m.name}")
 
                     activity?.runOnUiThread {
+                        activity?.toolbar?.title = milestone.name ?: "Milestone"
                         recycler_adapter = MilestoneUsersAdapter(milestone)
                         recycler_view.adapter = recycler_adapter
                     }

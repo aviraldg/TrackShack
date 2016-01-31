@@ -10,4 +10,5 @@ class Item : BaseModel() {
     var desc by ParseValue<String>()
     var cemail by ParseValue<String>()
     var cphone by ParseValue<String>()
+    var milestone by ParseValue<Milestone>()
 }

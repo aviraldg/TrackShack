@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/aviraldg/Code/TrackShack/ParseUI-Login/build/intermediates/res/merged/release/drawable/com_parse_ui_facebook_login_button_background_selector.xml",
+        "source": "/home/aviraldg/Code/TrackShack/ParseUI-Login/src/main/res/drawable/com_parse_ui_facebook_login_button_background_selector.xml"
+    },
+    {
+        "merged": "/home/aviraldg/Code/TrackShack/ParseUI-Login/build/intermediates/res/merged/release/drawable/com_parse_ui_parse_login_button_background_selector.xml",
+        "source": "/home/aviraldg/Code/TrackShack/ParseUI-Login/src/main/res/drawable/com_parse_ui_parse_login_button_background_selector.xml"
+    },
+    {
+        "merged": "/home/aviraldg/Code/TrackShack/ParseUI-Login/build/intermediates/res/merged/release/drawable/com_parse_ui_twitter_login_button_background_selector.xml",
+        "source": "/home/aviraldg/Code/TrackShack/ParseUI-Login/src/main/res/drawable/com_parse_ui_twitter_login_button_background_selector.xml"
+    }
+]

@@ -26,7 +26,7 @@ class ItemCreatorFragment : Fragment() {
 
 //        (activity as MainActivity).setToolbar(toolbar)
 
-        item_create.setOnClickListener {
+        fab.setOnClickListener {
             val i = Item()
             i.name = item_name.text.toString()
             i.cemail = item_cemail.text.toString()

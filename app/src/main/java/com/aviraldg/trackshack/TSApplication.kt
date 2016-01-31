@@ -24,8 +24,8 @@ class TSApplication : Application() {
         Fresco.initialize(this)
 
         Parse.enableLocalDatastore(this)
+        Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG)
         Parse.initialize(this)
-
         ParseInstallation.getCurrentInstallation().saveInBackground()
     }
 }

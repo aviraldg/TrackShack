@@ -9,6 +9,7 @@ import com.aviraldg.trackshack.MainActivity
 import com.aviraldg.trackshack.MilestoneFragment
 import com.aviraldg.trackshack.R
 import com.aviraldg.trackshack.models.Milestone
+import com.aviraldg.trackshack.util.animate
 import com.parse.ParseQuery
 import kotlinx.android.synthetic.milestone_item.view.*
 import java.util.*
@@ -21,6 +22,7 @@ class MilestoneAdapter(val activity: MainActivity) : RecyclerView.Adapter<Milest
             itemView.setOnClickListener {
                 with(activity) {
                     val ft = supportFragmentManager.beginTransaction()
+                    animate(ft)
                     ft.replace(R.id.main, MilestoneFragment.newInstance(milestone.objectId))
                     ft.addToBackStack("Milestone")
                     ft.commit()
@@ -38,12 +40,13 @@ class MilestoneAdapter(val activity: MainActivity) : RecyclerView.Adapter<Milest
     fun doQuery() {
         val q = ParseQuery.getQuery(Milestone::class.java)
         q.orderByAscending("order")
+        q.whereEqualTo("owner", activity.user)
         q.setLimit(1000)
 
         q.findInBackground { mutableList, parseException ->
             items.clear()
             parseException ?: items.addAll(mutableList)
-            (0..mutableList.size).forEach {
+            (0..(mutableList?.size ?: 0)).forEach {
                 notifyItemInserted(it)
             }
         }

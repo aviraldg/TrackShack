@@ -16,7 +16,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneAdapter
+import com.parse.ParseACL
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
+import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_pipeline.*
 import kotlin.properties.Delegates
@@ -35,7 +37,7 @@ class PipelineFragment : Fragment() {
         adapter = MilestoneAdapter(activity as MainActivity)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
-        recycler_view.itemAnimator = with(FadeInAnimator()) {
+        recycler_view.itemAnimator = with(FadeInUpAnimator()) {
             addDuration = 1000
             allowEnterTransitionOverlap = false
             this
@@ -73,6 +75,8 @@ class PipelineFragment : Fragment() {
                 .setPositiveButton("Create", { dialog, button ->
                     with(Milestone()) {
                         name = editText.text.toString()
+                        acl = ParseACL((activity as MainActivity).user)
+                        owner = (activity as MainActivity).user
                         Log.i(TAG, "$name}")
                         saveEventually({
                             adapter.doQuery()
