@@ -42,6 +42,7 @@ class DashStatsFragment : Fragment() {
         val q = ParseQuery.getQuery(Milestone::class.java)
                 .whereEqualTo("owner", (activity as MainActivity).user)
         q.findInBackground { mutableList, parseException ->
+            if(view == null) return@findInBackground
             val q2 = ParseQuery.getQuery(Item::class.java)
                     .whereMatchesQuery("milestone", q)
             val milestoneMap = mutableList.toMap {

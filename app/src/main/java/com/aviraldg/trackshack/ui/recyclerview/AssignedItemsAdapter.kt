@@ -1,19 +1,22 @@
 package com.aviraldg.trackshack.ui.recyclerview
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.aviraldg.trackshack.MainActivity
 import com.aviraldg.trackshack.R
 import com.aviraldg.trackshack.models.Item
+import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.models.User
 import com.parse.ParseQuery
 import com.parse.ParseUser
 import kotlinx.android.synthetic.item_item.view.*
 
-class AssignedItemsAdapter : RecyclerView.Adapter<AssignedItemsAdapter.ViewHolder>() {
+class AssignedItemsAdapter(val activity: MainActivity) : RecyclerView.Adapter<AssignedItemsAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setItem(item: Item) {
             itemView.item_name.text = item.name
@@ -27,19 +30,12 @@ class AssignedItemsAdapter : RecyclerView.Adapter<AssignedItemsAdapter.ViewHolde
     }
 
     fun doQuery() {
-        val q = ParseUser.getQuery()
-        q.whereEqualTo("username", "testing")
+        val m = activity.user?.getParseObject("milestone")
+        val q = ParseQuery.getQuery(Item::class.java)
+            .whereEqualTo("milestone", m)
         q.findInBackground { mutableList, parseException ->
-            val user = mutableList.first()
-            val m = user.getParseObject("milestone")
-
-            val p = ParseQuery.getQuery(Item::class.java)
-            p.whereEqualTo("milestone", m)
-            p.setLimit(1000)
-
-            val results = p.find()
             items.clear()
-            items.addAll(results)
+            items.addAll(mutableList)
             notifyDataSetChanged()
         }
     }

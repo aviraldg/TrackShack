@@ -1,5 +1,6 @@
 package com.aviraldg.trackshack
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
@@ -10,9 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.aviraldg.trackshack.ui.recyclerview.AssignedItemsAdapter
 import com.aviraldg.trackshack.ui.recyclerview.MilestoneAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,7 +31,7 @@ class AssignedFragment : Fragment() {
 
 //        (activity as MainActivity).setToolbar(toolbar)
 
-        adapter = AssignedItemsAdapter()
+        adapter = AssignedItemsAdapter(activity as MainActivity)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
 
@@ -41,5 +40,17 @@ class AssignedFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.assigned_items, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val i = Intent(context, LocationUpdateService::class.java)
+        context.startService(i)
+        return true
     }
 }

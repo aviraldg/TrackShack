@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button android:id="@+id/triage_scan"
-    android:text="Scan"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".MainActivity"
-    xmlns:tools="http://schemas.android.com/tools" />
+    android:layout_height="match_parent">
+
+    <com.journeyapps.barcodescanner.CompoundBarcodeView
+        android:id="@+id/barcode_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+    </com.journeyapps.barcodescanner.CompoundBarcodeView>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/barcodePreview" />
+
+</RelativeLayout>
