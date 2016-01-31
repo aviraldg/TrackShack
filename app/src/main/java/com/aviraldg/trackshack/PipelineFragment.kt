@@ -78,7 +78,7 @@ class PipelineFragment : Fragment() {
                         acl = ParseACL((activity as MainActivity).user)
                         owner = (activity as MainActivity).user
                         Log.i(TAG, "$name}")
-                        saveEventually({
+                        saveInBackground({
                             adapter.doQuery()
                         })
                     }
