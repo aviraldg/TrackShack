@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import com.aviraldg.trackshack.api.AuthUtil
 import com.aviraldg.trackshack.models.image
 import com.aviraldg.trackshack.util.animate
 import com.parse.ParseUser
@@ -37,8 +38,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val RC_AUTH: Int = 0
 
     private fun checkAuth() {
-        val i = Intent(this, LoginActivity::class.java)
-        startActivity(i)
+        if(!AuthUtil.isAuthenticated(this)) {
+            val i = Intent(this, LoginActivity::class.java)
+            startActivity(i)
+        }
 //        user = ParseUser.getCurrentUser()
 //        if(user == null) {
 //            val pl = ParseLoginBuilder(this)

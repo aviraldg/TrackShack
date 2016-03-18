@@ -31,6 +31,8 @@ import android.widget.TextView
 import java.util.ArrayList
 
 import android.Manifest.permission.READ_CONTACTS
+import com.aviraldg.trackshack.api.AuthUtil
+import com.aviraldg.trackshack.api.trackshackApi
 
 /**
  * A login screen that offers login via email/password.
@@ -269,20 +271,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         override fun doInBackground(vararg params: Void): Boolean? {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000)
-            } catch (e: InterruptedException) {
-                return false
-            }
+            val resp = trackshackApi.login(mEmail, mPassword)
+                .execute()
 
-            for (credential in DUMMY_CREDENTIALS) {
-                val pieces = credential.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                if (pieces[0] == mEmail) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1] == mPassword
-                }
-            }
+            if(!resp.isSuccessful) return false
+
+            val token = resp.body().key ?: return false
+
+            AuthUtil.setApiKey(this@LoginActivity, token)
 
             // TODO: register the new account here.
             return true
