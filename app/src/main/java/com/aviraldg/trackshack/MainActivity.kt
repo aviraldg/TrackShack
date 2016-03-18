@@ -18,9 +18,9 @@ import com.aviraldg.trackshack.models.image
 import com.aviraldg.trackshack.util.animate
 import com.parse.ParseUser
 import com.parse.ui.ParseLoginBuilder
-import kotlinx.android.synthetic.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.properties.Delegates
-import kotlinx.android.synthetic.nav_header_main.view.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var toggle by Delegates.notNull<ActionBarDrawerToggle>()
@@ -37,14 +37,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val RC_AUTH: Int = 0
 
     private fun checkAuth() {
-        user = ParseUser.getCurrentUser()
-        if(user == null) {
-            val pl = ParseLoginBuilder(this)
-                    .setParseLoginEnabled(true)
-                    .setAppLogo(R.mipmap.ic_logo)
-            val i = pl.build()
-            startActivityForResult(i, RC_AUTH)
-        }
+        val i = Intent(this, LoginActivity::class.java)
+        startActivity(i)
+//        user = ParseUser.getCurrentUser()
+//        if(user == null) {
+//            val pl = ParseLoginBuilder(this)
+//                    .setParseLoginEnabled(true)
+//                    .setAppLogo(R.mipmap.ic_logo)
+//            val i = pl.build()
+//            startActivityForResult(i, RC_AUTH)
+//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun setToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
-        supportActionBar.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         toggle.setToolbarNavigationClickListener {

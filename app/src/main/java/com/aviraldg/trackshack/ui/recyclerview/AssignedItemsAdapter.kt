@@ -14,7 +14,7 @@ import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.models.User
 import com.parse.ParseQuery
 import com.parse.ParseUser
-import kotlinx.android.synthetic.item_item.view.*
+import kotlinx.android.synthetic.main.item_item.view.*
 
 class AssignedItemsAdapter(val activity: MainActivity) : RecyclerView.Adapter<AssignedItemsAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

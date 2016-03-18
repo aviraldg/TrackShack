@@ -13,7 +13,7 @@ import com.aviraldg.trackshack.models.image
 import com.aviraldg.trackshack.util.md5
 import com.parse.ParseQuery
 import com.parse.ParseUser
-import kotlinx.android.synthetic.user_item.view.*
+import kotlinx.android.synthetic.main.user_item.view.*
 import org.json.JSONObject
 
 class MilestoneUsersAdapter(val milestone: Milestone) : RecyclerView.Adapter<MilestoneUsersAdapter.ViewHolder>() {

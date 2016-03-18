@@ -25,7 +25,7 @@ import com.parse.ParseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_milestone.*
 import kotlinx.android.synthetic.main.user_item.*
-import kotlinx.android.synthetic.user_item.view.*
+import kotlinx.android.synthetic.main.user_item.view.*
 import kotlin.properties.Delegates
 
 class MilestoneFragment : Fragment() {

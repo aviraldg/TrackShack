@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 23
@@ -33,7 +34,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.1"
 
     // Core Libs
     compile "com.android.support:appcompat-v7:$sdk_version"
@@ -65,9 +66,13 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.1"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:1.0.1"
     }
+
+    ext.kotlin_version = '1.0.1'
+    ext.gms_version = '8.4.0'
+    ext.sdk_version = '23.1.1'
 }
 
 repositories {

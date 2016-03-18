@@ -11,7 +11,7 @@ import com.aviraldg.trackshack.R
 import com.aviraldg.trackshack.models.Milestone
 import com.aviraldg.trackshack.util.animate
 import com.parse.ParseQuery
-import kotlinx.android.synthetic.milestone_item.view.*
+import kotlinx.android.synthetic.main.milestone_item.view.*
 import java.util.*
 
 class MilestoneAdapter(val activity: MainActivity) : RecyclerView.Adapter<MilestoneAdapter.ViewHolder>() {

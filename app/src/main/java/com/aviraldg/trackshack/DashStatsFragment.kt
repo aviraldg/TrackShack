@@ -45,7 +45,7 @@ class DashStatsFragment : Fragment() {
             if(view == null) return@findInBackground
             val q2 = ParseQuery.getQuery(Item::class.java)
                     .whereMatchesQuery("milestone", q)
-            val milestoneMap = mutableList.toMap {
+            val milestoneMap = mutableList.associate {
                 Pair(it.objectId, it)
             }
 
@@ -61,7 +61,7 @@ class DashStatsFragment : Fragment() {
                 }
             }
 
-            val keys = milestoneMap.keys.toArrayList()
+            val keys = milestoneMap.keys
 
             val pds = PieDataSet(keys.mapIndexed { i, it ->
                 Entry((countMap[it] ?: 0).toFloat(), i)
@@ -70,7 +70,7 @@ class DashStatsFragment : Fragment() {
             val pd = PieData(keys.map {
                 milestoneMap[it]?.name ?: "Unknown"
             }, pds)
-            pds.colors = ColorTemplate.JOYFUL_COLORS.toArrayList()
+            pds.colors = ColorTemplate.JOYFUL_COLORS.toList()
             pds.sliceSpace = 2f
             pds.selectionShift = 5f
             chart.holeRadius = 50f
