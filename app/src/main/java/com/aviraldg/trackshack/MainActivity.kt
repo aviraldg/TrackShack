@@ -42,14 +42,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val i = Intent(this, LoginActivity::class.java)
             startActivity(i)
         }
-//        user = ParseUser.getCurrentUser()
-//        if(user == null) {
-//            val pl = ParseLoginBuilder(this)
-//                    .setParseLoginEnabled(true)
-//                    .setAppLogo(R.mipmap.ic_logo)
-//            val i = pl.build()
-//            startActivityForResult(i, RC_AUTH)
-//        }
+        user = ParseUser.getCurrentUser()
+        if(user == null) {
+            val pl = ParseLoginBuilder(this)
+                    .setParseLoginEnabled(true)
+                    .setAppLogo(R.mipmap.ic_logo)
+            val i = pl.build()
+            startActivityForResult(i, RC_AUTH)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
